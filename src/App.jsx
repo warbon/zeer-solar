@@ -11,8 +11,67 @@ const navLinks = [
   { href: "#tools", label: "Solutions" },
   { href: "#estimate", label: "Estimate" },
   { href: "#how", label: "How It Works" },
+  { href: "#gallery", label: "Gallery" },
+  { href: "#testimonials", label: "Testimonials" },
   { href: "#about", label: "About Us" },
   { href: "#contact", label: "Contact" },
+];
+
+const galleryItems = [
+  {
+    image: "/gallery-03.jpg",
+    title: "Rooftop panel alignment",
+    location: "Metal roof installation",
+    tag: "Roof work",
+  },
+  {
+    image: "/gallery-06.jpg",
+    title: "Panel lifting on scaffold",
+    location: "Exterior installation",
+    tag: "Panel handling",
+  },
+  {
+    image: "/gallery-04.jpg",
+    title: "Battery and inverter installation",
+    location: "Wall-mounted power system",
+    tag: "Power system",
+  },
+  {
+    image: "/gallery-02.jpg",
+    title: "Electrical protection wiring",
+    location: "Control panel setup",
+    tag: "Wiring work",
+  },
+  {
+    image: "/gallery-05.jpg",
+    title: "Final wiring review",
+    location: "Installed inverter area",
+    tag: "Commissioning",
+  },
+];
+
+const testimonials = [
+  {
+    quote: "ZEER explained the system size, costs, and expected savings clearly before installation. Our monthly bill is easier to manage now, and the team stayed responsive after turnover.",
+    name: "Maria Santos",
+    role: "Homeowner",
+    location: "Talisay City, Cebu",
+    metric: "Lower monthly bill",
+  },
+  {
+    quote: "The battery planning helped us keep our essentials running during brownouts. The proposal was practical, and the installation schedule was handled professionally.",
+    name: "Jonathan Uy",
+    role: "Small business owner",
+    location: "Minglanilla, Cebu",
+    metric: "Backup-ready setup",
+  },
+  {
+    quote: "We compared financing options with ZEER before deciding. The numbers were easy to understand, and the final system matched what our roof and budget could support.",
+    name: "Leah Fernandez",
+    role: "Residential customer",
+    location: "Cebu City",
+    metric: "Clear financing path",
+  },
 ];
 
 function calculateSolarEstimate({ monthlyBill, dailyUsage, roofArea, systemCost, downPayment, loanYears, interestRate, batterySize, essentialLoad, brownoutHours }) {
@@ -198,7 +257,14 @@ export default function ZEERSolarLandingPage() {
               </div>
             </div>
 
-            <div className="relative min-h-[360px] lg:min-h-[520px]">
+            <div className="relative lg:min-h-[520px]">
+              <div className="overflow-hidden rounded-3xl border border-white bg-white shadow-2xl shadow-slate-300/70 lg:hidden">
+                <img
+                  src="/hero.png"
+                  alt="Solar panels installed on a home roof"
+                  className="aspect-[4/3] w-full object-cover"
+                />
+              </div>
               <div className="absolute bottom-3 right-0 hidden rounded-3xl bg-blue-950/95 px-7 py-6 text-white shadow-2xl lg:block">
                 <div className="flex items-center gap-4">
                   <div className="flex h-14 w-14 items-center justify-center rounded-full bg-green-500 text-3xl font-black">✓</div>
@@ -320,6 +386,69 @@ export default function ZEERSolarLandingPage() {
           </div>
         </section>
 
+        <section id="how" className="bg-white px-6 py-10 lg:px-10">
+          <div className="mx-auto grid max-w-7xl gap-4 rounded-3xl border border-slate-100 bg-white p-5 shadow-xl shadow-slate-200/60 md:grid-cols-4">
+            <TrustBlock icon="award" title="Quality You Can Trust" text="We use premium solar equipment built to last." />
+            <TrustBlock icon="tools" title="Expert Installation" text="Professional engineers and technicians at your service." />
+            <TrustBlock icon="shield" title="After-Sales Support" text="We're with you every step of the way." />
+            <TrustBlock icon="earth" title="Sustainable Future" text="Together, we create a cleaner, greener Philippines." />
+          </div>
+        </section>
+
+        <section id="gallery" className="bg-slate-50 px-6 py-16 lg:px-10">
+          <div className="mx-auto max-w-7xl">
+            <div className="mb-10 flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
+              <div className="max-w-2xl">
+                <p className="text-sm font-black uppercase tracking-[0.2em] text-green-600">Photo Gallery</p>
+                <h2 className="mt-3 text-3xl font-black text-blue-950 sm:text-4xl">Actual works in action.</h2>
+              </div>
+              <p className="max-w-xl text-lg leading-8 text-slate-700">
+                A quick look at rooftop preparation, installation work, completed panel arrays, and solar systems serving local homes.
+              </p>
+            </div>
+
+            <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-6">
+              {galleryItems.map((item, index) => (
+                <GalleryItem key={`${item.title}-${index}`} item={item} featured={index < 2} />
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="testimonials" className="bg-white px-6 py-16 lg:px-10">
+          <div className="mx-auto max-w-7xl">
+            <div className="mb-10 grid gap-6 lg:grid-cols-[0.85fr_1.15fr] lg:items-end">
+              <div className="max-w-2xl">
+                <p className="text-sm font-black uppercase tracking-[0.2em] text-green-600">Customer Stories</p>
+                <h2 className="mt-3 text-3xl font-black text-blue-950 sm:text-4xl">Testimonials from solar customers.</h2>
+              </div>
+              <div className="rounded-2xl border border-blue-100 bg-blue-50 px-6 py-5">
+                <p className="mt-5 text-lg leading-8 text-slate-700">
+                  Real-world concerns usually start with bill savings, brownout protection, and budget clarity. These customer stories show how ZEER Solar can speak to each one.
+                </p>
+              </div>
+            </div>
+            <div className="grid gap-5 md:grid-cols-3">
+              {testimonials.map((testimonial) => (
+                <TestimonialCard key={testimonial.name} testimonial={testimonial} />
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="about" className="relative overflow-hidden bg-blue-950 px-6 py-20 text-white lg:px-10">
+          <div className="absolute inset-x-0 top-0 h-10 rounded-b-[100%] bg-white" />
+          <div className="mx-auto max-w-5xl text-center">
+            <h2 className="text-4xl font-black">Solar decisions should be simple.</h2>
+            <p className="mx-auto mt-5 max-w-3xl text-lg leading-8 text-blue-100">
+              ZEER Solar Solutions combines consultation, estimation tools, financing guidance, and energy security planning so customers can move to solar with confidence.
+            </p>
+            <a href="#estimate" className="mt-8 inline-flex rounded-xl bg-green-500 px-8 py-4 font-bold text-white shadow-xl shadow-green-500/20 transition hover:bg-green-600">
+              Request a Free Estimate
+            </a>
+          </div>
+        </section>
+
         <section id="estimate" className="bg-slate-50 px-6 py-16 lg:px-10">
           <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.85fr_1.15fr]">
             <div>
@@ -357,28 +486,6 @@ export default function ZEERSolarLandingPage() {
                 This static form uses your email app to send the request to arboneverard1145@gmail.com.
               </p>
             </form>
-          </div>
-        </section>
-
-        <section id="how" className="bg-white px-6 py-10 lg:px-10">
-          <div className="mx-auto grid max-w-7xl gap-4 rounded-3xl border border-slate-100 bg-white p-5 shadow-xl shadow-slate-200/60 md:grid-cols-4">
-            <TrustBlock icon="award" title="Quality You Can Trust" text="We use premium solar equipment built to last." />
-            <TrustBlock icon="tools" title="Expert Installation" text="Professional engineers and technicians at your service." />
-            <TrustBlock icon="shield" title="After-Sales Support" text="We're with you every step of the way." />
-            <TrustBlock icon="earth" title="Sustainable Future" text="Together, we create a cleaner, greener Philippines." />
-          </div>
-        </section>
-
-        <section id="about" className="relative overflow-hidden bg-blue-950 px-6 py-20 text-white lg:px-10">
-          <div className="absolute inset-x-0 top-0 h-10 rounded-b-[100%] bg-white" />
-          <div className="mx-auto max-w-5xl text-center">
-            <h2 className="text-4xl font-black">Solar decisions should be simple.</h2>
-            <p className="mx-auto mt-5 max-w-3xl text-lg leading-8 text-blue-100">
-              ZEER Solar Solutions combines consultation, estimation tools, financing guidance, and energy security planning so customers can move to solar with confidence.
-            </p>
-            <a href="#estimate" className="mt-8 inline-flex rounded-xl bg-green-500 px-8 py-4 font-bold text-white shadow-xl shadow-green-500/20 transition hover:bg-green-600">
-              Request a Free Estimate
-            </a>
           </div>
         </section>
 
@@ -578,6 +685,56 @@ function TrustBlock({ icon, title, text }) {
         <p className="mt-2 text-sm leading-6 text-slate-600">{text}</p>
       </div>
     </div>
+  );
+}
+
+function GalleryItem({ item, featured = false }) {
+  return (
+    <figure className={`group relative aspect-[4/3] overflow-hidden rounded-2xl bg-blue-950 shadow-xl shadow-slate-300/50 ${featured ? "lg:col-span-3" : "lg:col-span-2"}`}>
+      <img
+        src={item.image}
+        alt={item.title}
+        className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-blue-950/90 via-blue-950/25 to-transparent" />
+      <figcaption className="absolute inset-x-0 bottom-0 p-5 text-white">
+        <p className="mb-3 inline-flex rounded-full bg-green-500 px-3 py-1 text-xs font-black uppercase tracking-[0.12em]">
+          {item.tag}
+        </p>
+        <h3 className="text-xl font-black leading-tight">{item.title}</h3>
+        <p className="mt-2 text-sm font-semibold text-blue-100">{item.location}</p>
+      </figcaption>
+    </figure>
+  );
+}
+
+function TestimonialCard({ testimonial }) {
+  return (
+    <article className="flex h-full flex-col rounded-2xl border border-slate-100 bg-white p-6 shadow-lg shadow-slate-200/70">
+      <div className="flex items-center justify-between gap-4">
+        <div className="flex items-center gap-1 text-orange-500" aria-label="Five star testimonial">
+          {[1, 2, 3, 4, 5].map((star) => (
+            <span key={star} className="text-lg leading-none">★</span>
+          ))}
+        </div>
+        <p className="rounded-full bg-blue-50 px-3 py-1 text-[0.68rem] font-black uppercase tracking-[0.12em] text-blue-700">
+          {testimonial.metric}
+        </p>
+      </div>
+      <blockquote className="mt-5 flex-1 text-base leading-7 text-slate-700">
+        "{testimonial.quote}"
+      </blockquote>
+      <div className="mt-6 flex items-center gap-4 border-t border-slate-200 pt-5">
+        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-green-100 text-base font-black text-green-700">
+          {testimonial.name.split(" ").map((part) => part[0]).join("")}
+        </div>
+        <div className="min-w-0">
+          <p className="font-black text-blue-950">{testimonial.name}</p>
+          <p className="mt-1 text-sm text-slate-600">{testimonial.role}</p>
+          <p className="mt-1 text-sm font-semibold text-green-700">{testimonial.location}</p>
+        </div>
+      </div>
+    </article>
   );
 }
 
