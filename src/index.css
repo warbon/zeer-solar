@@ -1,3 +1,93 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+/*
+ * Range sliders.
+ *
+ * The native track is only ~4px tall, so the whole control sits far below the
+ * 44px minimum touch target. We pad the input vertically to reach 44px, keep
+ * the track visually thin, and give the thumb a 24px face that is comfortable
+ * to drag on a phone.
+ */
+.range-input {
+  -webkit-appearance: none;
+  appearance: none;
+  min-height: 44px;
+  padding: 20px 0;
+  background: transparent;
+  cursor: pointer;
+  touch-action: pan-y;
+}
+
+.range-input::-webkit-slider-runnable-track {
+  height: 8px;
+  border-radius: 9999px;
+  background: #e2e8f0;
+}
+
+.range-input::-moz-range-track {
+  height: 8px;
+  border-radius: 9999px;
+  background: #e2e8f0;
+}
+
+.range-input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  margin-top: -8px;
+  width: 24px;
+  height: 24px;
+  border-radius: 9999px;
+  background: #ffffff;
+  border: 3px solid currentColor;
+  box-shadow: 0 6px 16px rgb(15 23 42 / 0.22);
+  transition: transform 160ms ease;
+}
+
+.range-input::-moz-range-thumb {
+  width: 24px;
+  height: 24px;
+  border-radius: 9999px;
+  background: #ffffff;
+  border: 3px solid currentColor;
+  box-shadow: 0 6px 16px rgb(15 23 42 / 0.22);
+  transition: transform 160ms ease;
+}
+
+.range-input:active::-webkit-slider-thumb {
+  transform: scale(1.12);
+}
+
+.range-input:focus-visible::-webkit-slider-thumb {
+  outline: 3px solid #1d4ed8;
+  outline-offset: 2px;
+}
+
+.range-input:focus-visible::-moz-range-thumb {
+  outline: 3px solid #1d4ed8;
+  outline-offset: 2px;
+}
+
+/* Header gains depth once the hero scrolls past (toggled by ScrollTrigger). */
+[data-site-header].is-condensed {
+  box-shadow: 0 10px 30px -12px rgb(15 23 42 / 0.25);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
